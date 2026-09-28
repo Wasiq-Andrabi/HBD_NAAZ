@@ -1,0 +1,429 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Syed Naaz Andrabi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: #f8fafc;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Ambient animated background */
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.4), transparent 50%),
+                        radial-gradient(circle at 85% 30%, rgba(88, 28, 135, 0.4), transparent 50%);
+            animation: pulseBg 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Glassmorphism utilities */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .serif-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            cursor: pointer;
+        }
+
+        /* CSS Earth */
+        .earth-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 3rem;
+        }
+
+        .earth {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #3b82f6, #1e3a8a, #020617);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.5), inset -20px -20px 40px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Abstract Continents */
+        .earth::before, .earth::after {
+            content: '';
+            position: absolute;
+            background: rgba(34, 197, 94, 0.6);
+            border-radius: 50%;
+            filter: blur(8px);
+        }
+        .earth::before { width: 80px; height: 60px; top: 20px; left: 30px; }
+        .earth::after { width: 100px; height: 80px; bottom: 30px; right: 10px; }
+
+        /* Clouds */
+        .clouds {
+            position: absolute;
+            top: -10%; left: -10%;
+            width: 120%; height: 120%;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 40%, rgba(255,255,255,0.1) 45%, transparent 50%);
+            animation: spin 20s linear infinite;
+        }
+
+        /* Sun */
+        .sun {
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: #fef08a;
+            box-shadow: 0 0 60px 20px rgba(253, 224, 71, 0.4);
+            animation: pulseSun 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseSun {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .tap-text {
+            animation: pulseOp 2s infinite;
+        }
+
+        @keyframes pulseOp {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .zoom-out-fade {
+            transform: scale(3);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Stat Row styling */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <div class="ambient-bg"></div>
+
+    <div id="intro-overlay" onclick="startExperience()">
+        <div class="earth-container">
+            <div class="sun"></div>
+            <div class="earth">
+                <div class="clouds"></div>
+            </div>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-light tracking-widest text-white tap-text text-center px-4">
+            Tap anywhere to open 🎁
+        </h2>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bg-audio" src="bg-music.mp3" loop preload="auto"></audio>
+
+    <main id="main-content" class="hidden min-h-screen px-4 py-12 md:px-8 max-w-4xl mx-auto flex flex-col items-center opacity-0 transition-opacity duration-1000">
+        
+        <!-- Hero Section -->
+        <header class="text-center w-full mb-16 animate-fade-in-up">
+            <div class="relative w-48 h-48 mx-auto mb-8">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 animate-spin" style="animation-duration: 4s; padding: 4px;">
+                    <!-- Placeholder logic if profile-pic.jpg fails -->
+                    <img src="profile-pic.jpg" onerror="this.src='https://placehold.co/400x400/0f172a/ffffff?text=SYED'" alt="Syed Naaz Andrabi" class="w-full h-full rounded-full object-cover border-4 border-[#0f172a]">
+                </div>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-white to-purple-200 mb-2">
+                SYED NAAZ ANDRABI
+            </h1>
+            <p class="text-lg md:text-xl text-blue-300 font-semibold tracking-widest">
+                [THE MAN, THE MYTH, THE LEGEND]
+            </p>
+        </header>
+
+        <section class="w-full mb-16">
+            <div class="glass-card p-8 md:p-10 relative overflow-hidden">
+                <i class="fa-solid fa-quote-left absolute top-4 left-4 text-4xl text-white/10"></i>
+                <p class="serif-text text-lg md:text-2xl text-center leading-relaxed font-medium text-slate-200 relative z-10 italic">
+                    "Let it be proclaimed that the 2nd of October is not merely a date on the calendar, but a festival of intellect and intrigue. For on this day we honour the saintly wisdom of Mahatma Gandhi, the cinematic genius of Vijay Salgaokar, and—lest we forget—the unmatched virtuoso of research, analytics, and the noble sport of winning arguments armed with facts so unassailable they could humble even the most stubborn debater. A most distinguished Happy Birthday to the true legend of this triumphant trio!"
+                </p>
+                <i class="fa-solid fa-quote-right absolute bottom-4 right-4 text-4xl text-white/10"></i>
+            </div>
+        </section>
+
+        <section class="w-full mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 tracking-wide text-purple-200">
+                Your stats since 2 Oct 2002
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                
+                <!-- Body & Life Stats -->
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-200">
+                        <span>🧬</span> Body & Life Stats
+                    </h3>
+                    <div class="text-sm md:text-base text-slate-300">
+                        <div class="stat-row"><span>❤️ Heartbeats</span> <span>908.5 million</span></div>
+                        <div class="stat-row"><span>🫁 Breaths</span> <span>201.9 million</span></div>
+                        <div class="stat-row"><span>👁️ Blinks</span> <span>126.2 million</span></div>
+                        <div class="stat-row"><span>🚶 Steps</span> <span>70.1 million</span></div>
+                        <div class="stat-row"><span>🩸 Blood pumped</span> <span>66.34 million L</span></div>
+                        <div class="stat-row"><span>🔄 Blood circulations</span> <span>12.62 million</span></div>
+                        <div class="stat-row"><span>🧬 Cells replaced</span> <span>2.892 quadrillion</span></div>
+                        <div class="stat-row"><span>🫁 Oxygen breathed</span> <span>7,360.6 kg</span></div>
+                    </div>
+                </div>
+
+                <!-- Food, Water & Energy -->
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-200">
+                        <span>🍽️</span> Food, Water & Energy
+                    </h3>
+                    <div class="text-sm md:text-base text-slate-300">
+                        <div class="stat-row"><span>💧 Water consumed</span> <span>21,906 litres</span></div>
+                        <div class="stat-row"><span>🍎 Food consumed</span> <span>15,773 kg</span></div>
+                        <div class="stat-row"><span>🍽️ Meals eaten</span> <span>26,288</span></div>
+                        <div class="stat-row"><span>🔥 Calories burned</span> <span>17.53 million kcal</span></div>
+                    </div>
+                </div>
+
+                <!-- Sleep & Mind -->
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-200">
+                        <span>😴</span> Sleep & Mind
+                    </h3>
+                    <div class="text-sm md:text-base text-slate-300">
+                        <div class="stat-row"><span>😴 Sleep</span> <span>70,101 hours</span></div>
+                        <div class="stat-row"><span>💤 Dreams</span> <span>35,050</span></div>
+                        <div class="stat-row"><span>🧠 Thoughts</span> <span>525.8 million</span></div>
+                        <div class="stat-row"><span>🗣️ Words spoken</span> <span>140.2 million</span></div>
+                        <div class="stat-row"><span>😂 Times laughed</span> <span>131,439</span></div>
+                    </div>
+                </div>
+
+                <!-- Growth & Movement -->
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-200">
+                        <span>🚶</span> Growth & Movement
+                    </h3>
+                    <div class="text-sm md:text-base text-slate-300">
+                        <div class="stat-row"><span>🌎 Distance walked</span> <span>65,719 km</span></div>
+                        <div class="stat-row"><span>💇 Hair growth</span> <span>3.51 m</span></div>
+                        <div class="stat-row"><span>💅 Nail growth</span> <span>100.8 cm</span></div>
+                        <div class="stat-row"><span>🚽 Bathroom visits</span> <span>61,338</span></div>
+                    </div>
+                </div>
+
+                <!-- Cosmic & Calendar Stats -->
+                <div class="glass-card p-6 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-200 justify-center">
+                        <span>🌎</span> Cosmic & Calendar Stats
+                    </h3>
+                    <div class="text-sm md:text-base text-slate-300 grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                        <div>
+                            <div class="stat-row"><span>🌅 Sunrises</span> <span>8,763</span></div>
+                            <div class="stat-row"><span>🌕 Full moons</span> <span>≈297</span></div>
+                            <div class="stat-row"><span>☀️ Orbits around Sun</span> <span>23.99</span></div>
+                            <div class="stat-row"><span>🍂 Seasons</span> <span>96</span></div>
+                            <div class="stat-row"><span>🎆 New Years</span> <span>24</span></div>
+                        </div>
+                        <div>
+                            <div class="stat-row"><span>📅 Days alive</span> <span>8,762.6</span></div>
+                            <div class="stat-row"><span>📆 Weeks alive</span> <span>1,251.8</span></div>
+                            <div class="stat-row"><span>🗓️ Months alive</span> <span>≈287.8</span></div>
+                            <div class="stat-row"><span>⏰ Hours awake</span> <span>140,201</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="w-full text-center mb-12 space-y-6">
+            <h3 class="serif-text text-2xl md:text-4xl text-white font-semibold">
+                Some dates are never forgotten.
+            </h3>
+            
+            <div class="inline-block glass-card py-6 px-8 mt-6">
+                <p class="text-slate-300 mb-2 font-medium">As I always say,</p>
+                <p class="text-xl text-blue-200 font-bold italic">
+                    "The Serene Dyad’s run flows on,<br> unperturbed by time."
+                </p>
+                <p class="text-2xl mt-4">🎉🔥🥳👌🏻✅</p>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <button onclick="sharePage()" class="mb-20 glass-card px-8 py-4 flex items-center gap-3 text-lg font-bold hover:bg-white/10 transition-colors hover:scale-105 active:scale-95 duration-200">
+            <i class="fa-solid fa-share-nodes"></i> Share this vibe
+        </button>
+
+    </main>
+
+    <button id="mute-btn" onclick="toggleAudio()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white/10 transition-colors z-50 shadow-[0_0_15px_rgba(255,255,255,0.2)] hidden">
+        <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+    </button>
+
+    <script>
+        const audio = document.getElementById('bg-audio');
+        const muteBtn = document.getElementById('mute-btn');
+        const audioIcon = document.getElementById('audio-icon');
+        const introOverlay = document.getElementById('intro-overlay');
+        const mainContent = document.getElementById('main-content');
+        
+        let hasStarted = false;
+
+        function startExperience() {
+            if(hasStarted) return;
+            hasStarted = true;
+
+            // Trigger Zoom Out Animation
+            introOverlay.classList.add('zoom-out-fade');
+            
+            // Try playing audio
+            audio.play().catch(e => {
+                console.log("Audio autoplay prevented. User must interact again.", e);
+            });
+
+            // Reveal Main Content
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+                mainContent.classList.remove('hidden');
+                muteBtn.classList.remove('hidden');
+                
+                // Slight delay for fade in effect
+                setTimeout(() => {
+                    mainContent.classList.remove('opacity-0');
+                    fireConfetti();
+                }, 100);
+                
+            }, 1000);
+        }
+
+        // Confetti logic
+        function fireConfetti() {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#3b82f6', '#8b5cf6', '#ffffff']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#3b82f6', '#8b5cf6', '#ffffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function toggleAudio() {
+            if (audio.muted) {
+                audio.muted = false;
+                audioIcon.classList.remove('fa-volume-xmark');
+                audioIcon.classList.add('fa-volume-high');
+            } else {
+                audio.muted = true;
+                audioIcon.classList.remove('fa-volume-high');
+                audioIcon.classList.add('fa-volume-xmark');
+            }
+        }
+
+        async function sharePage() {
+            const shareData = {
+                title: 'Happy Birthday Syed Naaz Andrabi',
+                text: 'The legend, the myth, the man. Check out this birthday tribute!',
+                url: window.location.href
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    // Fallback to copy clipboard if native share not supported
+                    await navigator.clipboard.writeText(window.location.href);
+                    
+                    // Simple inline notification
+                    const btn = document.querySelector('button[onclick="sharePage()"]');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Link Copied!';
+                    setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                }
+            } catch (err) {
+                console.error('Error sharing:', err);
+            }
+        }
+    </script>
+</body>
+</html>
+```
