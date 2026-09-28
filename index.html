@@ -12,8 +12,8 @@
     <style>
         :root {
             /* Premium Cream Glassmorphism */
-            --cream-glass: rgba(253, 251, 247, 0.92);
-            --cream-border: rgba(212, 175, 55, 0.4); /* Soft gold border */
+            --cream-glass: rgba(253, 251, 247, 0.94);
+            --cream-border: rgba(212, 175, 55, 0.5); /* Soft gold border */
             --text-dark: #2c1e16; /* Deep espresso brown for high contrast */
             --text-accent: #8b0000; /* Deep crimson */
             --gold-accent: #b8860b;
@@ -23,16 +23,15 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(-45deg, #020b18, #07193b, #0f2b5c, #1e1b4b, #2e1065, #0a1128, #030712);
-background-size: 400% 400%;
-animation: royalNavyFlow 12s ease-in-out infinite;
-
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea, #3b82f6, #0284c7, #38bdf8, #6366f1);
+            background-size: 350% 350%;
+            animation: vibrantSkyFlow 14s ease-in-out infinite;
             color: var(--text-dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        @keyframes vibrantSunsetFlow {
+        @keyframes vibrantSkyFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -76,7 +75,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             transform: translateX(-50%);
             width: 2px;
             height: 24px;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .balloon::before {
@@ -90,10 +89,10 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             border-bottom: 5px solid currentColor;
         }
 
-        .b-gold { background: radial-gradient(circle at 30% 30%, #fde68a, #d97706); color: #d97706; }
-        .b-crimson { background: radial-gradient(circle at 30% 30%, #f87171, #991b1b); color: #991b1b; }
-        .b-orange { background: radial-gradient(circle at 30% 30%, #fdba74, #c2410c); color: #c2410c; }
-        .b-amber { background: radial-gradient(circle at 30% 30%, #fef08a, #b45309); color: #b45309; }
+        .b-gold { background: radial-gradient(circle at 30% 30%, #fef08a, #d97706); color: #d97706; }
+        .b-crimson { background: radial-gradient(circle at 30% 30%, #fbcfe8, #be185d); color: #be185d; }
+        .b-sky { background: radial-gradient(circle at 30% 30%, #e0f2fe, #0284c7); color: #0284c7; }
+        .b-purple { background: radial-gradient(circle at 30% 30%, #f3e8ff, #7e22ce); color: #7e22ce; }
 
         @keyframes floatUp {
             0% {
@@ -101,10 +100,10 @@ animation: royalNavyFlow 12s ease-in-out infinite;
                 opacity: 0;
             }
             15% {
-                opacity: 0.75;
+                opacity: 0.8;
             }
             85% {
-                opacity: 0.75;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(-120vh) rotate(18deg);
@@ -119,7 +118,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--cream-border);
             border-radius: 1.5rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(30, 27, 75, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.6);
             color: var(--text-dark);
         }
 
@@ -133,7 +132,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
         #intro-overlay {
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 50% 40%, #1f0a05 0%, #080203 70%, #000000 100%);
+            background: radial-gradient(circle at 50% 40%, #312e81 0%, #1e1b4b 60%, #0f172a 100%);
             z-index: 100;
             display: flex;
             flex-direction: column;
@@ -182,7 +181,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             width: 170px;
             height: 170px;
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, #5eead4 0%, #0284c7 40%, #0369a1 70%, #0c4a6e 100%);
+            background: radial-gradient(circle at 35% 35%, #67e8f9 0%, #0284c7 40%, #0369a1 70%, #0c4a6e 100%);
             box-shadow: inset -22px -22px 40px rgba(0, 0, 0, 0.8), 0 0 45px rgba(56, 189, 248, 0.55);
             overflow: hidden;
         }
@@ -202,14 +201,14 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             position: absolute;
             inset: -15px;
             border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(255,255,255,0.4) 62%, transparent 72%);
+            background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(255,255,255,0.45) 62%, transparent 72%);
             filter: blur(4px);
             animation: rotateClouds 14s linear infinite reverse;
         }
 
         .ambient-cloud {
             position: absolute;
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.28);
             filter: blur(8px);
             border-radius: 50px;
             animation: driftClouds 8s ease-in-out infinite alternate;
@@ -232,8 +231,8 @@ animation: royalNavyFlow 12s ease-in-out infinite;
 
         .tap-text {
             animation: pulseOp 2s infinite;
-            color: #fde68a;
-            text-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+            color: #fef08a;
+            text-shadow: 0 0 15px rgba(250, 204, 21, 0.65);
         }
 
         @keyframes pulseOp {
@@ -243,9 +242,9 @@ animation: royalNavyFlow 12s ease-in-out infinite;
 
         .hero-photo-wrapper {
             padding: 12px;
-            background: linear-gradient(135deg, #d4af37, #f3e5ab, #d4af37);
+            background: linear-gradient(135deg, #d4af37, #fef08a, #d4af37);
             border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
             display: inline-block;
             position: relative;
         }
@@ -254,7 +253,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             content: '';
             position: absolute;
             inset: 2px;
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.6);
             border-radius: 10px;
             pointer-events: none;
         }
@@ -269,11 +268,11 @@ animation: royalNavyFlow 12s ease-in-out infinite;
         }
 
         .name-badge {
-            background: linear-gradient(to right, #111, #2c1e16, #111);
+            background: linear-gradient(to right, #1e1b4b, #312e81, #1e1b4b);
             border: 2px solid #d4af37;
             padding: 1.5rem 3rem;
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 10px 28px rgba(30, 27, 75, 0.35), inset 0 0 20px rgba(212, 175, 55, 0.15);
             position: relative;
         }
         
@@ -281,16 +280,16 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             content: '';
             position: absolute;
             inset: 4px;
-            border: 1px dashed rgba(212, 175, 55, 0.5);
+            border: 1px dashed rgba(212, 175, 55, 0.6);
             pointer-events: none;
         }
 
         .oct-badge {
             width: 130px;
             height: 130px;
-            background: linear-gradient(135deg, #2c1e16, #111);
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
             border: 3px solid #d4af37;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(30, 27, 75, 0.35), inset 0 0 15px rgba(212, 175, 55, 0.3);
             position: absolute;
             top: 0;
             left: 50%;
@@ -326,11 +325,11 @@ animation: royalNavyFlow 12s ease-in-out infinite;
     <div class="balloons-container">
         <div class="balloon b-gold" style="left: 6%; animation-duration: 17s; animation-delay: 0s;"></div>
         <div class="balloon b-crimson" style="left: 19%; animation-duration: 22s; animation-delay: 4s;"></div>
-        <div class="balloon b-orange" style="left: 36%; animation-duration: 19s; animation-delay: 1.5s;"></div>
-        <div class="balloon b-amber" style="left: 54%; animation-duration: 24s; animation-delay: 6s;"></div>
+        <div class="balloon b-sky" style="left: 36%; animation-duration: 19s; animation-delay: 1.5s;"></div>
+        <div class="balloon b-purple" style="left: 54%; animation-duration: 24s; animation-delay: 6s;"></div>
         <div class="balloon b-gold" style="left: 71%; animation-duration: 18s; animation-delay: 3s;"></div>
         <div class="balloon b-crimson" style="left: 86%; animation-duration: 21s; animation-delay: 8s;"></div>
-        <div class="balloon b-orange" style="left: 93%; animation-duration: 26s; animation-delay: 2s;"></div>
+        <div class="balloon b-sky" style="left: 93%; animation-duration: 26s; animation-delay: 2s;"></div>
     </div>
 
     <!-- Fireworks Canvas -->
@@ -358,7 +357,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
     <main id="main-content" class="hidden min-h-screen px-4 py-16 md:px-8 max-w-5xl mx-auto flex flex-col items-center opacity-0 transition-opacity duration-1000 relative z-10">
         
         <header class="text-center w-full mb-20 mt-8">
-            <h1 class="great-vibes text-7xl md:text-9xl text-[#d4af37] drop-shadow-[0_4px_25px_rgba(212,175,55,0.4)] mb-14 tracking-wide">
+            <h1 class="great-vibes text-7xl md:text-9xl text-[#fef08a] drop-shadow-[0_4px_25px_rgba(250,204,21,0.5)] mb-14 tracking-wide">
                 Happy Birthday
             </h1>
 
@@ -370,12 +369,12 @@ animation: royalNavyFlow 12s ease-in-out infinite;
             
             <div class="w-full flex flex-col items-center justify-center space-y-6">
                 <div class="name-badge inline-block">
-                    <h2 class="cinzel-text text-4xl md:text-6xl text-[#f3e5ab] drop-shadow-lg tracking-widest m-0 leading-none">
+                    <h2 class="cinzel-text text-4xl md:text-6xl text-[#fef08a] drop-shadow-lg tracking-widest m-0 leading-none">
                         SYED NAAZ ANDRABI
                     </h2>
                 </div>
                 
-                <div class="cream-glass px-8 py-3 rounded-sm shadow-xl inline-block border-t-4 border-t-[#2c1e16]">
+                <div class="cream-glass px-8 py-3 rounded-sm shadow-xl inline-block border-t-4 border-t-[#312e81]">
                     <p class="mono-text text-sm md:text-base text-[#2c1e16] font-bold tracking-[0.4em] uppercase m-0 leading-none">
                         The Man, The Myth, The Legend
                     </p>
@@ -410,7 +409,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
         </section>
 
         <section class="w-full mb-24">
-            <h2 class="great-vibes text-5xl md:text-7xl text-center mb-16 text-[#f3e5ab] drop-shadow-[0_2px_15px_rgba(212,175,55,0.3)]">
+            <h2 class="great-vibes text-5xl md:text-7xl text-center mb-16 text-[#fef08a] drop-shadow-[0_2px_18px_rgba(250,204,21,0.45)]">
                 Your stats since 2 Oct 2002
             </h2>
             
@@ -474,8 +473,8 @@ animation: royalNavyFlow 12s ease-in-out infinite;
                 </div>
 
                 <!-- Cosmic & Calendar -->
-                <div class="cream-glass p-8 md:col-span-2 border-t-4 border-[#1e3a8a] transition-transform duration-300 hover:-translate-y-2">
-                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-4 text-[#1e3a8a] justify-center border-b-2 border-[#d4af37]/30 pb-4 cinzel-text">
+                <div class="cream-glass p-8 md:col-span-2 border-t-4 border-[#3b82f6] transition-transform duration-300 hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-4 text-[#1e40af] justify-center border-b-2 border-[#d4af37]/30 pb-4 cinzel-text">
                         <i class="fa-solid fa-earth-americas"></i> Cosmic & Calendar Stats
                     </h3>
                     <div class="text-base font-serif grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2 px-4">
@@ -499,7 +498,7 @@ animation: royalNavyFlow 12s ease-in-out infinite;
         </section>
 
         <section class="w-full text-center mb-20 space-y-12">
-            <h3 class="great-vibes text-5xl md:text-7xl text-[#f3e5ab] drop-shadow-[0_2px_15px_rgba(212,175,55,0.4)]">
+            <h3 class="great-vibes text-5xl md:text-7xl text-[#fef08a] drop-shadow-[0_2px_18px_rgba(250,204,21,0.45)]">
                 Some dates are never forgotten.
             </h3>
             
@@ -514,13 +513,13 @@ animation: royalNavyFlow 12s ease-in-out infinite;
         </section>
 
         <!-- Share Button -->
-        <button id="share-btn" class="mb-24 px-12 py-5 flex items-center gap-4 text-xl font-bold rounded-full bg-gradient-to-r from-[#d4af37] via-[#e5c158] to-[#d4af37] text-[#2c1e16] shadow-[0_10px_30px_rgba(212,175,55,0.4)] transform hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/50 cinzel-text tracking-wide">
+        <button id="share-btn" class="mb-24 px-12 py-5 flex items-center gap-4 text-xl font-bold rounded-full bg-gradient-to-r from-[#d4af37] via-[#fde047] to-[#d4af37] text-[#2c1e16] shadow-[0_10px_30px_rgba(234,179,8,0.4)] transform hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/60 cinzel-text tracking-wide">
             <i class="fa-solid fa-share-nodes text-2xl"></i> Share this vibe
         </button>
 
     </main>
 
-    <button id="mute-btn" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[#2c1e16] border-2 border-[#d4af37] flex items-center justify-center text-xl hover:bg-[#1a110c] transition-all hover:scale-110 z-50 shadow-[0_5px_20px_rgba(0,0,0,0.8)] hidden">
+    <button id="mute-btn" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[#1e1b4b] border-2 border-[#d4af37] flex items-center justify-center text-xl hover:bg-[#312e81] transition-all hover:scale-110 z-50 shadow-[0_5px_20px_rgba(0,0,0,0.4)] hidden">
         <i class="fa-solid fa-volume-high text-[#d4af37]" id="audio-icon"></i>
     </button>
 
@@ -578,11 +577,11 @@ animation: royalNavyFlow 12s ease-in-out infinite;
         resizeCanvas();
 
         const colors = [
-            [212, 175, 55], // Gold
-            [255, 69, 0],   // Red-Orange
-            [255, 255, 255], // Silver
-            [255, 215, 0],  // Yellow Gold
-            [255, 140, 0]   // Dark Orange
+            [254, 240, 138], // Soft Gold
+            [255, 255, 255], // Pure Silver
+            [244, 114, 182], // Bright Pink
+            [167, 139, 250], // Soft Lavender Purple
+            [56, 189, 248]   // Sky Blue
         ];
 
         class Particle {
