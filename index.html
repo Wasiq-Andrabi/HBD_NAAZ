@@ -6,55 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Syed Naaz Andrabi</title>
     
+    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,400&family=Space+Mono:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #0f172a;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #f8fafc;
+            color: #ffffff;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Ambient animated background */
-        .ambient-bg {
+        /* Animated Vibrant Gradient Background */
+        .animated-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.4), transparent 50%),
-                        radial-gradient(circle at 85% 30%, rgba(88, 28, 135, 0.4), transparent 50%);
-            animation: pulseBg 15s ease-in-out infinite alternate;
+            z-index: -2;
+            background: linear-gradient(-45deg, #ff00cc, #333399, #ff9900, #00c9ff, #9d174d);
+            background-size: 400% 400%;
+            animation: gradientBg 20s ease infinite;
         }
 
-        @keyframes pulseBg {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Glassmorphism utilities */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
             border-radius: 1.25rem;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        .serif-text {
-            font-family: 'Playfair Display', serif;
-        }
+        /* Typography Classes */
+        .great-vibes { font-family: 'Great Vibes', cursive; }
+        .serif-text { font-family: 'Playfair Display', serif; }
+        .mono-text { font-family: 'Space Mono', monospace; }
+        .cinzel-text { font-family: 'Cinzel Decorative', serif; }
 
+        /* Intro Screen & Earth Animation */
         #intro-overlay {
             position: fixed;
             inset: 0;
@@ -64,16 +71,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 1.5s ease, transform 1.5s ease;
+            transition: opacity 1.5s ease, transform 1.5s ease, visibility 1.5s;
             cursor: pointer;
         }
 
-        /* CSS Earth */
         .earth-container {
             position: relative;
             width: 200px;
             height: 200px;
             margin-bottom: 3rem;
+            transition: transform 1.5s ease;
         }
 
         .earth {
@@ -87,7 +94,6 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Abstract Continents */
         .earth::before, .earth::after {
             content: '';
             position: absolute;
@@ -98,17 +104,15 @@
         .earth::before { width: 80px; height: 60px; top: 20px; left: 30px; }
         .earth::after { width: 100px; height: 80px; bottom: 30px; right: 10px; }
 
-        /* Clouds */
         .clouds {
             position: absolute;
             top: -10%; left: -10%;
             width: 120%; height: 120%;
             border-radius: 50%;
-            background: radial-gradient(circle, transparent 40%, rgba(255,255,255,0.1) 45%, transparent 50%);
+            background: radial-gradient(circle, transparent 40%, rgba(255,255,255,0.2) 45%, transparent 50%);
             animation: spin 20s linear infinite;
         }
 
-        /* Sun */
         .sun {
             position: absolute;
             top: -30px; right: -30px;
@@ -119,34 +123,66 @@
             animation: pulseSun 3s ease-in-out infinite alternate;
         }
 
+        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
-        
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
         @keyframes pulseSun {
             0% { transform: scale(1); opacity: 0.8; }
             100% { transform: scale(1.1); opacity: 1; }
         }
-
-        .tap-text {
-            animation: pulseOp 2s infinite;
-        }
-
         @keyframes pulseOp {
             0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
 
+        .tap-text { animation: pulseOp 2s infinite; }
+        
         .zoom-out-fade {
-            transform: scale(3);
+            transform: scale(3) translateZ(0);
             opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Floating Elements (Balloons & Particles) */
+        .floating-elements {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
             pointer-events: none;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 45px; height: 55px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatUp 15s linear infinite;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(255,255,255,0.2);
+        }
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -12px; left: 50%; transform: translateX(-50%);
+            width: 2px; height: 35px;
+            background: rgba(255,255,255,0.4);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(-5deg); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: translateY(-50vh) rotate(5deg); }
+            90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(-5deg); opacity: 0; }
         }
 
         /* Stat Row styling */
@@ -155,19 +191,67 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
         }
-        .stat-row:last-child {
-            border-bottom: none;
+        .stat-row:last-child { border-bottom: none; }
+
+        /* 2 October Centered Badge */
+        .oct-badge {
+            width: 140px; height: 140px;
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            border: 4px solid rgba(255,255,255,0.8);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.6), inset 0 0 20px rgba(255,255,255,0.5);
+            
+            /* Positioning logic for perfect centering on the container's top edge */
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Decorative Photo Box */
+        .photo-wrapper {
+            position: relative;
+            padding: 10px;
+            background: linear-gradient(45deg, #ff00cc, #333399, #ff9900);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .photo-inner {
+            background: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.2);
         }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
 
-    <div class="ambient-bg"></div>
+<body class="antialiased selection:bg-fuchsia-500 selection:text-white">
 
+    <div class="animated-bg"></div>
+    
+    <div class="floating-elements" id="floating-elements">
+        <!-- Balloons will be injected by JS -->
+    </div>
+
+    <!-- Intro Overlay -->
     <div id="intro-overlay" onclick="startExperience()">
-        <div class="earth-container">
+        <div class="earth-container" id="earth-box">
             <div class="sun"></div>
             <div class="earth">
                 <div class="clouds"></div>
@@ -179,50 +263,78 @@
     </div>
 
     <!-- Hidden Audio Element -->
-    <audio id="bg-audio" src="bg-music.mp3" loop preload="auto"></audio>
+    <audio id="bgMusic" loop src="drishyam_2_title_track_full_audio_ajay_devgn_akshaye_tabu_shri.m4a" preload="auto"></audio>
 
-    <main id="main-content" class="hidden min-h-screen px-4 py-12 md:px-8 max-w-4xl mx-auto flex flex-col items-center opacity-0 transition-opacity duration-1000">
+    <main id="main-content" class="hidden min-h-screen px-4 py-12 md:px-8 max-w-4xl mx-auto flex flex-col items-center opacity-0 transition-opacity duration-1000 relative">
         
         <!-- Hero Section -->
-        <header class="text-center w-full mb-16 animate-fade-in-up">
-            <div class="relative w-48 h-48 mx-auto mb-8">
-                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 animate-spin" style="animation-duration: 4s; padding: 4px;">
-                    <!-- Placeholder logic if profile-pic.jpg fails -->
-                    <img src="profile-pic.jpg" onerror="this.src='https://placehold.co/400x400/0f172a/ffffff?text=SYED'" alt="Syed Naaz Andrabi" class="w-full h-full rounded-full object-cover border-4 border-[#0f172a]">
+        <header class="text-center w-full mb-16 mt-4 animate-fade-in-up">
+            
+            <h1 class="great-vibes text-6xl md:text-8xl text-amber-300 drop-shadow-[0_0_15px_rgba(251,191,36,0.6)] mb-10 tracking-wide">
+                Happy Birthday
+            </h1>
+
+            <!-- Full Rectangular Hero Photo -->
+            <div class="w-full max-w-md mx-auto mb-10">
+                <div class="photo-wrapper transform hover:scale-[1.02] transition-transform duration-500">
+                    <div class="photo-inner">
+                        <img src="file_0000000059088230adc78ac2fd5d8e1f.png" alt="Hero Photo" class="w-full h-auto object-cover block">
+                    </div>
                 </div>
             </div>
             
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-white to-purple-200 mb-2">
-                SYED NAAZ ANDRABI
-            </h1>
-            <p class="text-lg md:text-xl text-blue-300 font-semibold tracking-widest">
-                [THE MAN, THE MYTH, THE LEGEND]
-            </p>
+            <!-- Highly Decorative Name Box -->
+            <div class="relative inline-block px-8 py-6 mb-8 w-full max-w-2xl">
+                <!-- Outer Decorative Border -->
+                <div class="absolute inset-0 border-2 border-amber-400 opacity-60 rounded-xl transform scale-105 pointer-events-none shadow-[0_0_20px_rgba(251,191,36,0.2)]"></div>
+                <!-- Inner Glass Border -->
+                <div class="absolute inset-0 bg-black/30 backdrop-blur-sm border border-amber-200/50 rounded-xl pointer-events-none"></div>
+                
+                <h2 class="cinzel-text text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-yellow-100 via-amber-300 to-yellow-600 drop-shadow-2xl relative z-10 tracking-wider">
+                    SYED NAAZ ANDRABI
+                </h2>
+            </div>
+            
+            <!-- Tagline in neat box -->
+            <div class="inline-block border border-white/40 bg-white/10 backdrop-blur-md px-8 py-3 rounded-md shadow-2xl relative z-10">
+                <p class="mono-text text-sm md:text-base text-white font-bold tracking-[0.25em] md:tracking-[0.4em] uppercase m-0 leading-none">
+                    THE MAN, THE MYTH, THE LEGEND
+                </p>
+            </div>
         </header>
 
-        <section class="w-full mb-16">
-            <div class="glass-card p-8 md:p-10 relative overflow-hidden">
-                <i class="fa-solid fa-quote-left absolute top-4 left-4 text-4xl text-white/10"></i>
-                <p class="serif-text text-lg md:text-2xl text-center leading-relaxed font-medium text-slate-200 relative z-10 italic">
-                    "Let it be proclaimed that the 2nd of October is not merely a date on the calendar, but a festival of intellect and intrigue. For on this day we honour the saintly wisdom of Mahatma Gandhi, the cinematic genius of Vijay Salgaokar, and—lest we forget—the unmatched virtuoso of research, analytics, and the noble sport of winning arguments armed with facts so unassailable they could humble even the most stubborn debater. A most distinguished Happy Birthday to the true legend of this triumphant trio!"
+        <!-- 2 October Special Section -->
+        <section class="w-full mb-20 mt-16 pt-10">
+            <div class="glass-card pt-20 pb-10 px-8 md:px-12 relative overflow-visible mt-4 text-center border-t-2 border-t-amber-300/50">
+                
+                <!-- Perfectly Centered Badge -->
+                <div class="oct-badge">
+                    <span class="text-4xl md:text-5xl font-black text-white leading-tight drop-shadow-md" style="font-family: 'Inter', sans-serif;">
+                        2<br><span class="text-2xl md:text-3xl font-bold">OCT</span>
+                    </span>
+                </div>
+
+                <i class="fa-solid fa-quote-left text-4xl text-amber-300/30 mb-6 block"></i>
+                <p class="serif-text text-lg md:text-2xl leading-relaxed font-medium text-slate-100 relative z-10 drop-shadow-md">
+                    Let it be proclaimed that the 2nd of October is no ordinary date on the calendar, but a festival of intellect and intrigue. On this day the world honours the saintly wisdom of Mahatma Gandhi and the cinematic genius of Vijay Salgaokar[Drishyam]. And lest we forget, it also celebrates a fast-bowling allrounder of rare pace and poise, a sage of cricket whose command of the game is matched only by his mastery of research and analytics, and whose facts are so unassailable that the most stubborn debater must walk back to the pavilion. A most distinguished Happy Birthday to the true legend of this triumphant trio!
                 </p>
-                <i class="fa-solid fa-quote-right absolute bottom-4 right-4 text-4xl text-white/10"></i>
+                <i class="fa-solid fa-quote-right text-4xl text-amber-300/30 mt-6 block"></i>
             </div>
         </section>
 
         <section class="w-full mb-16">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 tracking-wide text-purple-200">
+            <h2 class="great-vibes text-5xl md:text-6xl text-center mb-12 text-amber-300 drop-shadow-md">
                 Your stats since 2 Oct 2002
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
                 
                 <!-- Body & Life Stats -->
-                <div class="glass-card p-6">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-200">
-                        <span>🧬</span> Body & Life Stats
+                <div class="glass-card p-6 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3 text-fuchsia-300 border-b border-white/20 pb-3">
+                        <span class="text-3xl drop-shadow-md">🧬</span> Body & Life Stats
                     </h3>
-                    <div class="text-sm md:text-base text-slate-300">
+                    <div class="text-sm md:text-base text-slate-100 font-medium">
                         <div class="stat-row"><span>❤️ Heartbeats</span> <span>908.5 million</span></div>
                         <div class="stat-row"><span>🫁 Breaths</span> <span>201.9 million</span></div>
                         <div class="stat-row"><span>👁️ Blinks</span> <span>126.2 million</span></div>
@@ -235,11 +347,11 @@
                 </div>
 
                 <!-- Food, Water & Energy -->
-                <div class="glass-card p-6">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-200">
-                        <span>🍽️</span> Food, Water & Energy
+                <div class="glass-card p-6 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3 text-blue-300 border-b border-white/20 pb-3">
+                        <span class="text-3xl drop-shadow-md">🍽️</span> Food, Water & Energy
                     </h3>
-                    <div class="text-sm md:text-base text-slate-300">
+                    <div class="text-sm md:text-base text-slate-100 font-medium">
                         <div class="stat-row"><span>💧 Water consumed</span> <span>21,906 litres</span></div>
                         <div class="stat-row"><span>🍎 Food consumed</span> <span>15,773 kg</span></div>
                         <div class="stat-row"><span>🍽️ Meals eaten</span> <span>26,288</span></div>
@@ -248,11 +360,11 @@
                 </div>
 
                 <!-- Sleep & Mind -->
-                <div class="glass-card p-6">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-200">
-                        <span>😴</span> Sleep & Mind
+                <div class="glass-card p-6 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3 text-emerald-300 border-b border-white/20 pb-3">
+                        <span class="text-3xl drop-shadow-md">😴</span> Sleep & Mind
                     </h3>
-                    <div class="text-sm md:text-base text-slate-300">
+                    <div class="text-sm md:text-base text-slate-100 font-medium">
                         <div class="stat-row"><span>😴 Sleep</span> <span>70,101 hours</span></div>
                         <div class="stat-row"><span>💤 Dreams</span> <span>35,050</span></div>
                         <div class="stat-row"><span>🧠 Thoughts</span> <span>525.8 million</span></div>
@@ -262,11 +374,11 @@
                 </div>
 
                 <!-- Growth & Movement -->
-                <div class="glass-card p-6">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-200">
-                        <span>🚶</span> Growth & Movement
+                <div class="glass-card p-6 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3 text-amber-300 border-b border-white/20 pb-3">
+                        <span class="text-3xl drop-shadow-md">🚶</span> Growth & Movement
                     </h3>
-                    <div class="text-sm md:text-base text-slate-300">
+                    <div class="text-sm md:text-base text-slate-100 font-medium">
                         <div class="stat-row"><span>🌎 Distance walked</span> <span>65,719 km</span></div>
                         <div class="stat-row"><span>💇 Hair growth</span> <span>3.51 m</span></div>
                         <div class="stat-row"><span>💅 Nail growth</span> <span>100.8 cm</span></div>
@@ -275,22 +387,22 @@
                 </div>
 
                 <!-- Cosmic & Calendar Stats -->
-                <div class="glass-card p-6 md:col-span-2">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-200 justify-center">
-                        <span>🌎</span> Cosmic & Calendar Stats
+                <div class="glass-card p-6 md:col-span-2 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1 border-2 border-indigo-400/30">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-indigo-300 justify-center border-b border-white/20 pb-3">
+                        <span class="text-3xl drop-shadow-md">🌎</span> Cosmic & Calendar Stats
                     </h3>
-                    <div class="text-sm md:text-base text-slate-300 grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                    <div class="text-sm md:text-base text-slate-100 font-medium grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
                         <div>
-                            <div class="stat-row"><span>🌅 Sunrises</span> <span>8,763</span></div>
+                            <div class="stat-row"><span>🌅 Sunrises experienced</span> <span>8,763</span></div>
                             <div class="stat-row"><span>🌕 Full moons</span> <span>≈297</span></div>
                             <div class="stat-row"><span>☀️ Orbits around Sun</span> <span>23.99</span></div>
-                            <div class="stat-row"><span>🍂 Seasons</span> <span>96</span></div>
-                            <div class="stat-row"><span>🎆 New Years</span> <span>24</span></div>
+                            <div class="stat-row"><span>🍂 Seasons experienced</span> <span>96</span></div>
+                            <div class="stat-row"><span>🎆 New Years reached</span> <span>24</span></div>
                         </div>
                         <div>
-                            <div class="stat-row"><span>📅 Days alive</span> <span>8,762.6</span></div>
-                            <div class="stat-row"><span>📆 Weeks alive</span> <span>1,251.8</span></div>
-                            <div class="stat-row"><span>🗓️ Months alive</span> <span>≈287.8</span></div>
+                            <div class="stat-row"><span>📅 Days lived</span> <span class="font-bold text-amber-300">8,762.6</span></div>
+                            <div class="stat-row"><span>📆 Weeks lived</span> <span class="font-bold text-amber-300">1,251.8</span></div>
+                            <div class="stat-row"><span>🗓️ Months lived</span> <span class="font-bold text-amber-300">≈287.8</span></div>
                             <div class="stat-row"><span>⏰ Hours awake</span> <span>140,201</span></div>
                         </div>
                     </div>
@@ -299,50 +411,76 @@
             </div>
         </section>
 
-        <section class="w-full text-center mb-12 space-y-6">
-            <h3 class="serif-text text-2xl md:text-4xl text-white font-semibold">
+        <section class="w-full text-center mb-16 space-y-6">
+            <h3 class="great-vibes text-5xl md:text-7xl text-amber-300 drop-shadow-xl font-medium">
                 Some dates are never forgotten.
             </h3>
             
-            <div class="inline-block glass-card py-6 px-8 mt-6">
-                <p class="text-slate-300 mb-2 font-medium">As I always say,</p>
-                <p class="text-xl text-blue-200 font-bold italic">
+            <div class="inline-block glass-card py-10 px-8 md:px-12 mt-8 shadow-2xl border-t-4 border-t-pink-400/50">
+                <p class="text-slate-300 mb-4 font-semibold uppercase tracking-widest text-sm md:text-base">As I always say</p>
+                <p class="serif-text text-3xl md:text-4xl text-white font-bold italic leading-snug drop-shadow-md">
                     "The Serene Dyad’s run flows on,<br> unperturbed by time."
                 </p>
-                <p class="text-2xl mt-4">🎉🔥🥳👌🏻✅</p>
+                <p class="text-4xl md:text-5xl mt-8 tracking-widest">🎉🔥🥳👌🏻✅</p>
             </div>
         </section>
 
-        <!-- Actions -->
-        <button onclick="sharePage()" class="mb-20 glass-card px-8 py-4 flex items-center gap-3 text-lg font-bold hover:bg-white/10 transition-colors hover:scale-105 active:scale-95 duration-200">
-            <i class="fa-solid fa-share-nodes"></i> Share this vibe
+        <!-- Prominent Colored Native Share Button -->
+        <button onclick="sharePage()" class="mb-24 px-10 py-5 flex items-center gap-4 text-xl font-bold rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 hover:from-pink-400 hover:via-purple-400 hover:to-indigo-500 text-white shadow-[0_10px_30px_rgba(236,72,153,0.5)] transform hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/30">
+            <i class="fa-solid fa-share-nodes text-2xl"></i> Share this vibe
         </button>
 
     </main>
 
-    <button id="mute-btn" onclick="toggleAudio()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white/10 transition-colors z-50 shadow-[0_0_15px_rgba(255,255,255,0.2)] hidden">
-        <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+    <!-- Mute/Unmute Button pinned to bottom right -->
+    <button id="mute-btn" onclick="toggleAudio()" class="fixed bottom-6 right-6 w-16 h-16 rounded-full glass-card flex items-center justify-center text-2xl hover:bg-white/30 transition-all hover:scale-110 z-50 shadow-[0_0_30px_rgba(255,255,255,0.4)] border-white/50 bg-black/40 hidden backdrop-blur-xl">
+        <i class="fa-solid fa-volume-high text-amber-300 drop-shadow-md" id="audio-icon"></i>
     </button>
 
     <script>
-        const audio = document.getElementById('bg-audio');
+        const audio = document.getElementById('bgMusic');
         const muteBtn = document.getElementById('mute-btn');
         const audioIcon = document.getElementById('audio-icon');
         const introOverlay = document.getElementById('intro-overlay');
+        const earthBox = document.getElementById('earth-box');
         const mainContent = document.getElementById('main-content');
         
         let hasStarted = false;
+
+        // Generate floating balloons with vibrant colors
+        function createBalloons() {
+            const container = document.getElementById('floating-elements');
+            const colors = ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)'];
+            
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = `${Math.random() * 100}vw`;
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDuration = `${10 + Math.random() * 20}s`;
+                balloon.style.animationDelay = `${Math.random() * 10}s`;
+                // Random scale
+                const scale = 0.6 + Math.random() * 0.8;
+                balloon.style.transform = `scale(${scale})`;
+                container.appendChild(balloon);
+            }
+        }
+
+        createBalloons();
 
         function startExperience() {
             if(hasStarted) return;
             hasStarted = true;
 
-            // Trigger Zoom Out Animation
+            // Animate Earth Zoom Out specifically
+            earthBox.style.transform = 'scale(5) translateZ(0)';
+            earthBox.style.opacity = '0';
+            
             introOverlay.classList.add('zoom-out-fade');
             
-            // Try playing audio
+            // Try playing audio immediately on tap
             audio.play().catch(e => {
-                console.log("Audio autoplay prevented. User must interact again.", e);
+                console.log("Audio autoplay prevented.", e);
             });
 
             // Reveal Main Content
@@ -351,34 +489,34 @@
                 mainContent.classList.remove('hidden');
                 muteBtn.classList.remove('hidden');
                 
-                // Slight delay for fade in effect
+                // Fade in content
                 setTimeout(() => {
                     mainContent.classList.remove('opacity-0');
                     fireConfetti();
                 }, 100);
                 
-            }, 1000);
+            }, 1200);
         }
 
-        // Confetti logic
+        // Heavy confetti effect
         function fireConfetti() {
-            const duration = 3000;
+            const duration = 5000;
             const end = Date.now() + duration;
 
             (function frame() {
                 confetti({
-                    particleCount: 5,
+                    particleCount: 8,
                     angle: 60,
-                    spread: 55,
+                    spread: 80,
                     origin: { x: 0 },
-                    colors: ['#3b82f6', '#8b5cf6', '#ffffff']
+                    colors: ['#fbbf24', '#ec4899', '#3b82f6', '#ffffff', '#8b5cf6']
                 });
                 confetti({
-                    particleCount: 5,
+                    particleCount: 8,
                     angle: 120,
-                    spread: 55,
+                    spread: 80,
                     origin: { x: 1 },
-                    colors: ['#3b82f6', '#8b5cf6', '#ffffff']
+                    colors: ['#fbbf24', '#ec4899', '#3b82f6', '#ffffff', '#8b5cf6']
                 });
 
                 if (Date.now() < end) {
@@ -390,12 +528,12 @@
         function toggleAudio() {
             if (audio.muted) {
                 audio.muted = false;
-                audioIcon.classList.remove('fa-volume-xmark');
-                audioIcon.classList.add('fa-volume-high');
+                audioIcon.classList.remove('fa-volume-xmark', 'text-slate-400');
+                audioIcon.classList.add('fa-volume-high', 'text-amber-300');
             } else {
                 audio.muted = true;
-                audioIcon.classList.remove('fa-volume-high');
-                audioIcon.classList.add('fa-volume-xmark');
+                audioIcon.classList.remove('fa-volume-high', 'text-amber-300');
+                audioIcon.classList.add('fa-volume-xmark', 'text-slate-400');
             }
         }
 
@@ -413,11 +551,15 @@
                     // Fallback to copy clipboard if native share not supported
                     await navigator.clipboard.writeText(window.location.href);
                     
-                    // Simple inline notification
                     const btn = document.querySelector('button[onclick="sharePage()"]');
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Link Copied!';
-                    setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check text-2xl"></i> Link Copied!';
+                    btn.classList.add('from-green-500', 'to-emerald-600');
+                    
+                    setTimeout(() => { 
+                        btn.innerHTML = originalHTML; 
+                        btn.classList.remove('from-green-500', 'to-emerald-600');
+                    }, 3000);
                 }
             } catch (err) {
                 console.error('Error sharing:', err);
